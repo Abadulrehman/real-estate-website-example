@@ -27,7 +27,7 @@ export default async function Layout({ children, params }) {
     <>
       {/* Header */}
       <div className="relative">
-        <div className="absolute w-full flex justify-center z-0">
+        <div className="absolute z-0 flex w-full justify-center">
           <Navbar />
         </div>
         <div className="fixed left-1/2 top-[10vw] w-full -translate-x-1/2 text-center text-[9vw] font-extrabold text-white">
@@ -79,18 +79,18 @@ export default async function Layout({ children, params }) {
       </div>
 
       <div className="relative flex flex-col items-center justify-center bg-white">
-        <div className="flex max-w-6xl flex-col-reverse items-center py-12 md:flex-row md:py-24 gap-8">
+        <div className="flex max-w-6xl flex-col-reverse items-center gap-8 py-12 md:flex-row md:py-24">
           <div className="flex w-1/2 flex-col items-center justify-center ">
             <div className="flex items-center justify-center gap-8">
-              <Image src={phIcon} />
-              <Image src={bIcon} />
+              <Image src={phIcon} alt="" />
+              <Image src={bIcon} alt="" />
             </div>
             <div className="flex items-center justify-center gap-8">
-              <Image src={dIcon} />
-              <Image src={pfIcon} />
+              <Image src={dIcon} alt="" />
+              <Image src={pfIcon} alt="" />
             </div>
           </div>
-          <div className="flex md:w-1/2 flex-col gap-2 px-8 md:px-4">
+          <div className="flex flex-col gap-2 px-8 md:w-1/2 md:px-4">
             <div className="text-center text-2xl font-extralight">
               <span className="text-plgray">
                 Property Management made{" "}

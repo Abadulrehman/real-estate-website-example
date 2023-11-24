@@ -1,59 +1,114 @@
 import { getSettings } from "@/lib/sanity/client";
 import Footer from "@/components/footer";
-import { urlForImage } from "@/lib/sanity/image";
 import Navbar from "@/components/navbar";
+import Image from "next/image";
 
-async function sharedMetaData(params) {
-  const settings = await getSettings();
+import {
+  CiBadgeDollar,
+  CiHome,
+  CiSettings,
+  CiUser
+} from "react-icons/ci";
 
-  return {
-    // enable this for resolving opengraph image
-    // metadataBase: new URL(settings.url),
-    title: {
-      default:
-        settings?.title ||
-        "Stablo - Blog Template for Next.js & Sanity CMS",
-      template: "%s | Stablo"
-    },
-    description:
-      settings?.description ||
-      "Stablo - popular open-source next.js and sanity blog template",
-    keywords: ["Next.js", "Sanity", "Tailwind CSS"],
-    authors: [{ name: "Surjith" }],
-    canonical: settings?.url,
-    openGraph: {
-      images: [
-        {
-          url:
-            urlForImage(settings?.openGraphImage)?.src ||
-            "/img/opengraph.jpg",
-          width: 800,
-          height: 600
-        }
-      ]
-    },
-    twitter: {
-      title: settings?.title || "Stablo Template",
-      card: "summary_large_image"
-    },
-    robots: {
-      index: true,
-      follow: true
-    }
-  };
-}
+import homeBG from "../../public/img/homebg.png";
+import homeFG from "../../public/img/homebg-fg.png";
+import home3 from "../../public/img/home3.png";
 
-export async function generateMetadata({ params }) {
-  return await sharedMetaData(params);
-}
+import phIcon from "../../public/img/phicon.png";
+import bIcon from "../../public/img/bayuticon.png";
+import dIcon from "../../public/img/dubizzleicon.png";
+import pfIcon from "../../public/img/pficon.png";
+
+import ActionIcon from "@/components/action-icon";
 
 export default async function Layout({ children, params }) {
   const settings = await getSettings();
   return (
     <>
-      <Navbar {...settings} />
+      {/* Header */}
+      <div className="relative">
+        <div className="absolute left-0 top-0 z-0 h-full w-full">
+          <Navbar />
+        </div>
+        <div className="fixed left-1/2 top-[10vw] w-full -translate-x-1/2 text-center text-[9vw] font-extrabold text-white">
+          Let&apos;s Build a Legacy
+        </div>
+        <Image className="absolute" src={homeFG} alt="" />
 
-      <div>{children}</div>
+        <Image src={homeBG} alt="" />
+      </div>
+
+      <div className="relative flex flex-col items-center justify-center bg-white">
+        <div className="flex max-w-6xl flex-col items-center gap-4 py-12 md:flex-row md:py-24">
+          <div className="flex flex-col gap-2 px-4 md:w-1/2 md:px-0">
+            <div className="text-center text-2xl font-extralight">
+              <span className="text-plgray">Pure </span>
+              <span className="text-plgreen">Home </span>
+              <span className="text-plgray">Real Estate</span>
+            </div>
+            <span className="flex items-center justify-center text-center font-light">
+              Connecting People & Property, perfectly. Helping
+              hundreds of people move homes every year In Abu Dhabi.
+            </span>
+          </div>
+
+          <div className=" flex w-1/2 flex-col items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-4">
+              <ActionIcon
+                title="Sell Properties"
+                icon={CiBadgeDollar}
+              />
+              <ActionIcon title="Rent Properties" icon={CiHome} />
+            </div>
+            <div className="flex items-center justify-center gap-4">
+              <ActionIcon
+                title="Property Management"
+                icon={CiSettings}
+              />
+              <ActionIcon title="Hand Over Services" icon={CiUser} />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="relative">
+        <div className="absolute left-2 top-1/2 max-w-[7ch] -translate-y-1/2 text-left text-[7vw] font-extrabold text-white md:left-10">
+          Manage your Legacy with us
+        </div>
+        <Image src={home3} alt="" />
+      </div>
+
+      <div className="relative flex flex-col items-center justify-center bg-white">
+        <div className="flex max-w-6xl flex-col-reverse items-center py-12 md:flex-row md:py-24 gap-8">
+          <div className="flex w-1/2 flex-col items-center justify-center ">
+            <div className="flex items-center justify-center gap-8">
+              <Image src={phIcon} />
+              <Image src={bIcon} />
+            </div>
+            <div className="flex items-center justify-center gap-8">
+              <Image src={dIcon} />
+              <Image src={pfIcon} />
+            </div>
+          </div>
+          <div className="flex md:w-1/2 flex-col gap-2 px-8 md:px-4">
+            <div className="text-center text-2xl font-extralight">
+              <span className="text-plgray">
+                Property Management made{" "}
+              </span>
+              <span className="text-plgreen">easy</span>
+            </div>
+            <span className="flex items-center justify-center text-center font-light">
+              Get complete peace of mind when it comes to the sale,
+              renting and maintenance of your properties. Our
+              comprehensive services can address any sort of
+              requirement that you may have, under a single roof with
+              a single contact point, available 24/7.
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* <div>{children}</div> */}
 
       <Footer {...settings} />
     </>

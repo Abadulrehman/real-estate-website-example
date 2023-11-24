@@ -27,7 +27,7 @@ export default async function Layout({ children, params }) {
     <>
       {/* Header */}
       <div className="relative">
-        <div className="absolute left-0 top-0 z-0 h-full w-full">
+        <div className="absolute w-full flex justify-center z-0">
           <Navbar />
         </div>
         <div className="fixed left-1/2 top-[10vw] w-full -translate-x-1/2 text-center text-[9vw] font-extrabold text-white">
